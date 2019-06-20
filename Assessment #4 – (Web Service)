@@ -1,0 +1,51 @@
+from flask import Flask, request, jsonify
+from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route("/firstfactorial", methods=["POST"])
+def firstfactorial():
+    result = 1
+    if request.method == "POST":    
+        input_value = request.form["input_value"]
+        input_value=int(input_value)
+        for i in range(input_value+1):
+            if i!=0:
+                result*=i
+    return jsonify(firstfactorial=result),201
+
+@app.route("/rirstreverse", methods=["POST"])
+def rirstreverse():
+    result = ""
+    if request.method == "POST":    
+        input_value = request.form["input_value"]
+        input_value=str(input_value)
+        for i in range(len(input_value),0,-1):
+            result+=input_value(i)
+    return jsonify(rirstreverse=result),201
+
+@app.route("/alphabetsoup", methods=["POST"])
+def alphabetsoup():
+    if request.method == "POST":    
+        input_value = request.form["input_value"]
+        input_value=str(input_value)
+    x=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    y=[]
+    for j in input_value: 
+        y.append([j,0])
+    for k in range(len(y)):
+        n=0
+        for i in x:
+            n+=1
+            if i==y[k][0]:
+                y[k][1]=n
+    m=[]
+    for i in range(len(y)):
+        m.append(y[i][1])
+    m=sorted(m)
+    result = ""
+    for i in m:
+        result+=x[i-1] 
+    return jsonify(alphabetsoup=result),201
