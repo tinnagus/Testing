@@ -1,0 +1,20 @@
+x=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+z=str(input())
+y=[]
+for j in z: 
+    y.append([j,0])
+    
+for k in range(len(y)):
+    n=0
+    for i in x:
+        n+=1
+        if i==y[k][0]:
+            y[k][1]=n
+m=[]
+for i in range(len(y)):
+    m.append(y[i][1])
+m=sorted(m)
+h=""
+for i in m:
+    h+=x[i-1]
+print(h) 
